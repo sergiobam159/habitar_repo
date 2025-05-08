@@ -3,6 +3,10 @@ package com.habitar.proyectos.servicio;
 import java.util.List;
 import java.util.Optional;
 
+import com.habitar.proyectos.dto.ProyectoActualizacionDTO;
+import com.habitar.proyectos.dto.ProyectoCreacionDTO;
+import com.habitar.proyectos.dto.ProyectoDTO;
+
 public interface ProyectoServicio {
 	
 	 ProyectoDTO crearProyecto(ProyectoCreacionDTO proyectoCreacionDTO);
