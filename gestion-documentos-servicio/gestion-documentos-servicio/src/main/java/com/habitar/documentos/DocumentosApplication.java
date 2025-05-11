@@ -1,13 +1,13 @@
-package com.habitar.gestion_documentos_servicio;
+package com.habitar.documentos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GestionDocumentosServicioApplication {
+public class DocumentosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GestionDocumentosServicioApplication.class, args);
+		SpringApplication.run(DocumentosApplication.class, args);
 	}
 
 }

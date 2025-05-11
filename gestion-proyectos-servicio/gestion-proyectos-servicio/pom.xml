@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.habitar</groupId>
-	<artifactId>gestion-proyectos-servicio</artifactId>
+	<artifactId>proyectos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gestion-proyectos-servicio</name>
+	<name>proyectos</name>
 	<description>Microservicio de gestión de proyectos</description>
 	<url/>
 	<licenses>
