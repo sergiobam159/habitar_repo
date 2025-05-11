@@ -18,7 +18,8 @@ public class ProyectoServicioImpl implements ProyectoServicio  {
 	
 	private final ProyectoRepositorio proyectoRepositorio; //inmutable, privado 
 	 
-	@Autowired  //← inyeccion de dependencias - necesita la instancia de ProyectoRepositorio para que ProyectoServicioImplfuncione
+	@Autowired  //← inyeccion de dependencias - necesita la instancia de ProyectoRepositorio
+				//para que ProyectoServicioImplfuncione
 	     		////principio de inversión de control (IoC) - inversión de dependencias
 	public ProyectoServicioImpl(ProyectoRepositorio proyectoRepositorio) {
 	        this.proyectoRepositorio = proyectoRepositorio;

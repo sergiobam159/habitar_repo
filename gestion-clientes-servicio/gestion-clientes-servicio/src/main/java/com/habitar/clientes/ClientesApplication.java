@@ -1,13 +1,13 @@
-package com.habitar.gestion_colaboradores_servicio;
+package com.habitar.clientes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GestionColaboradoresServicioApplication {
+public class ClientesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GestionColaboradoresServicioApplication.class, args);
+		SpringApplication.run(ClientesApplication.class, args);
 	}
 
 }
