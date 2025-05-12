@@ -1,6 +1,6 @@
 package com.habitar.proyectos.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime; //mas moderno y mejor manejo que Date
 
 import lombok.Data;
 
@@ -13,6 +13,6 @@ public class ProyectoDTO {
 	 private String estado;
 	 private String clienteId;
 	 private String colaboradorResponsableId; //id obtenido desde el servicio de controlador
-	 private Date fechaDeInicio;
+	 private LocalDateTime fechaDeInicio;
 	 
 }

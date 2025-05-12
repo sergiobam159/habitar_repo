@@ -1,6 +1,6 @@
 package com.habitar.proyectos.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class ProyectoActualizacionDTO {
 	    private String estado;
 	    private String clienteId;
 	    private String colaboradorResponsableId;
-	    private Date fechaDeInicio;
+	    private LocalDateTime fechaDeInicio;
 }
