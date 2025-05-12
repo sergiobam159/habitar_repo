@@ -61,8 +61,9 @@ public class ProyectoServicioImpl implements ProyectoServicio  {
 
 	@Override
 	public Optional<ProyectoDTO> obtenerProyectoPorId(String id) { //USO DE OJBETO OPTIONAL 
-		Optional<Proyecto> proyectoOptional = proyectoRepositorio.findById(id); //GESTION DE NULL
 		
+		Optional<Proyecto> proyectoOptional = proyectoRepositorio.findById(id); //GESTION DE NULL
+
 		return proyectoOptional.map(proyecto -> { //metodo map que recibe una funcion 
 			//expresion lambda con 1 parametro
             
