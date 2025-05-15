@@ -31,10 +31,11 @@
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage-spring-boot-starter -->
+
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-storage-spring-boot-starter</artifactId>
-    <version>3.0.0-beta.1</version>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+    <version>5.22.0</version>
 </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
