@@ -54,7 +54,10 @@ public class ColaboradorServicioImpl implements ColaboradorServicio {
 
 	@Override
 	public Optional<ColaboradorDTO> obtenerColaboradorPorId(String id) {
-		Optional<ColaboradorDTO> colaborador = colaboradorRepositorio.findById(id).map(this::convertirAColaboradorDTO);
+		Optional<ColaboradorDTO> colaborador = colaboradorRepositorio.findById(id).map(this::convertirAColaboradorDTO); 
+		//no tiramos la excelcpicion aqui
+		//la decisin de qué hacer si el Optional está vacío se delega al controlador (ojito, patrón CHAIN OF RESPONSABILTY)
+		
 		return colaborador;
 	}
 

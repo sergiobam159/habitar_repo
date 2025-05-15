@@ -12,7 +12,7 @@
 	<artifactId>colaboradores</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>colaboradores</name>
-	<description>Microservicio de gestión de clientes</description>
+	<description>Microservicio de gestión de colaboradores</description>
 	<url/>
 	<licenses>
 		<license/>

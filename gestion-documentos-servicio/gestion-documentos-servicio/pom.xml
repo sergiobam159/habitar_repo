@@ -12,7 +12,7 @@
 	<artifactId>documentos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>documentos</name>
-	<description>Microservicio de gestión de clientes</description>
+	<description>Microservicio de gestión de documentos</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -30,10 +30,12 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage-spring-boot-starter -->
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-storage-spring-boot-starter</artifactId>
+    <version>3.0.0-beta.1</version>
+</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

@@ -1,0 +1,5 @@
+Implementar: 
+api-gateway
+config-server 
+service-registry
+balanceador de carga con - Ribbon
