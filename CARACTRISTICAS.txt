@@ -3,3 +3,18 @@ api-gateway
 config-server 
 service-registry
 balanceador de carga con - Ribbon
+
+----
+
+transaccionales
+con bd
+etc etc
+
+contraseña postgres 
+ContrasennaPostgres1
+contraseña mongo
+ContraseñaMongo1 /ContrasennaPostgres1
+
+
+RITM 1171999
+
