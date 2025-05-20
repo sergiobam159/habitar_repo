@@ -27,9 +27,8 @@ public class AutenticacionServicio implements UserDetailsService {
 		Usuario usuario = usuarioOp.orElseThrow(()-> new UsernameNotFoundException("No se ha encontrado el usuario con el login "+username));
 		
 		return User.builder()
-				.username(usuario.getUsu_login())
-				.password(usuario.getUsu_contrasena())
-				.roles("USER")
+				.username(usuario.getUsuLogin())
+				.password(usuario.getUsuContrasena())
 				.build();
 		
 	}

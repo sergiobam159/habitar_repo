@@ -10,7 +10,7 @@ import com.habitar.autenticacion.modelo.Usuario;
 @Repository
 public interface UsuarioRepositorio extends JpaRepository<Usuario, String>{ //ESTE EXTIENDE DE JPA por que es una BD RELACIONAL POSTGRES
 
-	Optional<Usuario> findByUsuLogin(String usuLogin);
+	Optional<Usuario> findByUsuLogin(String usu_login);
 
     Optional<Usuario> findByUsuIdColaborador(String usuIdColaborador);
 	
