@@ -1,0 +1,136 @@
+Algoritmo / Guion del Script de Demostración Integral
+Objetivo: Demostrar la interacción completa entre los microservicios de Autenticación, Colaboradores, Proyectos y Documentos, utilizando el JWT como mecanismo de seguridad.
+
+Pre-requisitos:
+
+Todos los microservicios deben estar corriendo (Autenticación, Colaboradores, Proyectos, Documentos).
+Un usuario pre-registrado en el sistema (ej. ssilvana/zargo) con roles adecuados (por ejemplo, ADMIN o roles que permitan todas estas operaciones).
+Un cliente OAuth2 registrado (ej. cliente-postman/secreto).
+Configuración de Azure Blob Storage en el microservicio de Documentos.
+Paso 0: Preparación (Opcional, pero recomendado para una demo limpia)
+
+Acción: Asegurarse de que no haya datos "residuales" de demos anteriores, especialmente proyectos o colaboradores con los mismos nombres que se usarán.
+Microservicio: (N/A, podría ser limpieza manual de DB o un script de setup)
+Paso 1: Login de Usuario y Obtención de Token JWT
+
+Propósito: Demostrar la autenticación de un usuario del sistema y obtener un token JWT.
+Microservicio: Autenticación (asumiremos localhost:8082)
+Método: POST
+URL: http://localhost:8082/auth/login
+Headers: Content-Type: application/json
+Body (raw JSON):
+JSON
+
+{
+    "username": "ssilvana",
+    "password": "zargo"
+}
+Resultado Esperado: 200 OK y un JSON con el token (JWT).
+Acción de Demostración: GUARDAR ESTE TOKEN (AUTH_TOKEN) para usarlo en todos los pasos subsiguientes.
+Paso 2: Crear un Nuevo Colaborador
+
+Propósito: Registrar un nuevo colaborador en el sistema.
+Microservicio: Colaboradores (asumiremos localhost:8085)
+Método: POST
+URL: http://localhost:8085/api/colaboradores
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+Body (raw JSON - ejemplo):
+JSON
+
+{
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan.perez@example.com",
+    "telefono": "987654321",
+    "rol": "INGENIERO" // O algún rol definido en tu MS Colaboradores
+    // Otros campos relevantes de tu entidad Colaborador
+}
+Resultado Esperado: 201 Created y el JSON del colaborador creado, incluyendo su id.
+Acción de Demostración: GUARDAR EL id DEL COLABORADOR CREADO (COLLABORATOR_ID).
+Paso 3: Crear un Nuevo Proyecto
+
+Propósito: Crear un proyecto al cual se vincularán documentos y colaboradores.
+Microservicio: Proyectos (asumiremos localhost:8083)
+Método: POST
+URL: http://localhost:8083/api/proyectos
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+Body (raw JSON - ejemplo):
+JSON
+
+{
+    "nombre": "Proyecto Demo Integrada {{timestamp}}", // Usar timestamp para unicidad
+    "descripcion": "Proyecto para la demostración de gestión de documentos y colaboradores.",
+    "fechaInicio": "2025-05-21",
+    "estado": "PENDIENTE"
+    // Otros campos relevantes de tu entidad Proyecto
+}
+Resultado Esperado: 201 Created y el JSON del proyecto creado, incluyendo su id.
+Acción de Demostración: GUARDAR EL id DEL PROYECTO CREADO (PROJECT_ID).
+Paso 4: Asignar Colaborador Responsable al Proyecto
+
+Propósito: Vincular el colaborador creado en el Paso 2 al proyecto creado en el Paso 3, asignándolo como responsable.
+Microservicio: Proyectos (o quizás Colaboradores, dependiendo de tu diseño)
+Endpoint Propuesto: PUT /api/proyectos/{projectId}/asignar-responsable/{colaboradorId} o un PATCH con un cuerpo.
+Método: PUT (ejemplo)
+URL: http://localhost:8083/api/proyectos/{{PROJECT_ID}}/asignar-responsable/{{COLLABORATOR_ID}}
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Resultado Esperado: 200 OK o 204 No Content.
+Consideración: Esto puede requerir un DTO específico si lo haces con un PATCH y un cuerpo JSON.
+Paso 5: Adjuntar 2 Documentos al Proyecto
+
+Propósito: Subir archivos al Azure Blob Storage y asociarlos al PROJECT_ID.
+Microservicio: Documentos (asumiremos localhost:8084)
+Endpoint Propuesto: POST /api/documentos/upload/{projectId}
+Repetir 2 veces (una por cada documento):
+Método: POST
+URL: http://localhost:8084/api/documentos/upload/{{PROJECT_ID}}
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: multipart/form-data
+Body (form-data):
+file: (Seleccionar documento_proyecto_1.pdf)
+descripcion: "Primer documento importante del proyecto" (opcional, si tu DTO lo permite)
+tipoDocumento: "INFORME" (opcional)
+Resultado Esperado: 200 OK o 201 Created, con detalles del documento subido (nombre, URL, etc.). GUARDAR EL NOMBRE/ID DE AMBOS DOCUMENTOS (DOC1_ID, DOC2_ID).
+Paso 6: Cambiar Estado de Proyecto
+
+Propósito: Actualizar el estado de un proyecto (ej. de PENDIENTE a EN_PROGRESO).
+Microservicio: Proyectos
+Endpoint Propuesto: PATCH /api/proyectos/{projectId}/estado o PUT /api/proyectos/{projectId}
+Método: PATCH (ejemplo)
+URL: http://localhost:8083/api/proyectos/{{PROJECT_ID}}/estado
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Content-Type: application/json
+Body (raw JSON - ejemplo):
+JSON
+
+{
+    "estado": "EN_PROGRESO" // O el nuevo estado que quieras
+}
+Resultado Esperado: 200 OK y el JSON actualizado del proyecto.
+Paso 7: Eliminar un Documento
+
+Propósito: Eliminar uno de los documentos adjuntos al proyecto.
+Microservicio: Documentos
+Endpoint Propuesto: DELETE /api/documentos/{documentoIdOFileName}
+Método: DELETE
+URL: http://localhost:8084/api/documentos/{{DOC1_ID}} (elimina el primer documento)
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Resultado Esperado: 204 No Content o 200 OK.
+Paso 8: Eliminar el Proyecto
+
+Propósito: Eliminar el proyecto y, idealmente, cualquier documento restante o referencias relacionadas. (Este paso puede tener lógica compleja de borrado en cascada o verificación).
+Microservicio: Proyectos
+Endpoint Propuesto: DELETE /api/proyectos/{projectId}
+Método: DELETE
+URL: http://localhost:8083/api/proyectos/{{PROJECT_ID}}
+Headers:
+Authorization: Bearer {{AUTH_TOKEN}}
+Resultado Esperado: 204 No Content o 200 OK.
