@@ -29,6 +29,13 @@ public class ProyectoServicioImpl implements ProyectoServicio {
 		this.proyectoRepositorio = proyectoRepositorio;
 	}
 
+	
+	@Override
+	public Boolean checkProyectoExiste (String Id) {
+		
+		return Optional.ofNullable(this.obtenerProyectoPorId(Id)).filter(p -> !p.isEmpty()).isPresent();
+	}
+	
 	@Override
 	public ProyectoDTO crearProyecto(ProyectoCreacionDTO proyectoCreacionDTO) {
 

@@ -22,5 +22,7 @@ public interface ProyectoServicio {
 	    void eliminarProyecto(String id);
 	    
 	    ProyectoDTO asignarResponsable(String proyectoId, String colaboradorId);
+	    
+	    Boolean checkProyectoExiste(String proyectoId);
 
 }
