@@ -6,14 +6,16 @@ import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.habitar.documentos.dto.DocumentoDTO;
+import com.habitar.documentos.dto.DocumentoSubidaDTO;
+import com.habitar.documentos.model.Documento;
 
 public interface DocumentoServicio {
 	
 	// recibe el archivoy el id del proyecto al que pertenece
-	 DocumentoDTO subirDocumento(MultipartFile file, String idProyecto);
+	 DocumentoDTO subirDocumento(MultipartFile file, DocumentoSubidaDTO documento);
 
 	    // descarga un documento por su id del blob en Azure.
-	    byte[] descargarDocumento(String idBlobStorage);
+	    byte[] descargarDocumento(Long idDocumento);
 
 	    //  elimina un documento por su id del blob en Azure.
 	    //  metadato en la bd  y el archivo en Azure borra ambos
@@ -31,4 +33,6 @@ public interface DocumentoServicio {
 
 	    
 	    void habilitarDocumento(Long id);
+	    
+	 
 }

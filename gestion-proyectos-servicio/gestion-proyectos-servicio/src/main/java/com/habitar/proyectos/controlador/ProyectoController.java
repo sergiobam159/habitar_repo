@@ -95,7 +95,7 @@ public class ProyectoController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<ProyectoDTO> ActualizarProyecto ( @PathVariable String id,@Valid @RequestBody ProyectoActualizacionDTO proyectoActualizacionDTO) {
-		//solo se le pone el valid al body
+		//solo se le pone el valid al body, pq ahi va el objeto que se validará
 		ProyectoDTO proyectoActualizado= proyectoServicio.actualizarProyecto(id, proyectoActualizacionDTO);
 		
 		return new ResponseEntity<>(proyectoActualizado, HttpStatus.OK);

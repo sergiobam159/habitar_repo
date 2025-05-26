@@ -28,17 +28,19 @@ public class AzureBlobStorageServicioImpl implements AzureBlobStorageServicio{
 	@Override
 	public String subirArchivo(MultipartFile file) throws IOException {
 		String blobId = UUID.randomUUID().toString(); //un identificador unico universal UUID 
-        BlobClient blobClient = blobContainerClient.getBlobClient(blobId); 
+		try {
+		BlobClient blobClient = blobContainerClient.getBlobClient(blobId); 
         //ya este BlobClient es un cliente que trabaja con un UN Y SOLO UN archivo en el blob storage
         //al ponerle el blobId en el getblobclient se crea el cliente y genera el id de este nuevo blob
         //con el UUID generado
-
-        try {
-            blobClient.upload(file.getInputStream(), file.getSize(), true); //sube el archivo a través del cliente 
+        
+            blobClient.upload(file.getInputStream(), file.getSize(), true); //sube el archivo a través del cliente
+            return blobId; //el id del blob que se guardará en la bd
+            
         } catch (IOException e) {
             throw new IOException("Error al subir el archivo al blob storage: " + e.getMessage(), e);
         }
-        return blobId; //el id del blob que se guardará en la bd
+       
 	}
 
 	@Override
@@ -89,5 +91,7 @@ public class AzureBlobStorageServicioImpl implements AzureBlobStorageServicio{
 	        return blobClient.getBlobUrl();
 	    
 	}
+	
+	
 
 }

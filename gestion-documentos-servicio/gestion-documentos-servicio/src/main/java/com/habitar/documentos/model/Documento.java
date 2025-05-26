@@ -26,7 +26,7 @@ public class Documento {
 	  @Column(name="id_archivo", length =255)
 	    private Long id; // ID primario de la base de datos
 
-	    @Column(name = "nombre_archivo_original", length = 255) 
+	    @Column(name = "nombre_archivo", length = 255) 
 	    private String nombreArchivoOriginal;
 	
 	    @Column(name = "tipo_contenido", length = 100)

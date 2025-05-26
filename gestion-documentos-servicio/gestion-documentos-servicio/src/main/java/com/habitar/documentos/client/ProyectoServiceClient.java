@@ -1,8 +1,8 @@
-package com.habitar.documentos.cliente;
+package com.habitar.documentos.client;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +12,8 @@ import com.habitar.documentos.dto.ProyectoDTO;
 
 
 
-@FeignClient(name="proyectos",url = "http://localhost:8080") 
-public interface ProyectoServiceCliente {
+@FeignClient(name="proyectos-servicio") 
+public interface ProyectoServiceClient {
 	
 	@GetMapping("/proyectos/{id}")
 	ResponseEntity<Optional<ProyectoDTO>> obtenerProyectoPorId(@PathVariable String id);
