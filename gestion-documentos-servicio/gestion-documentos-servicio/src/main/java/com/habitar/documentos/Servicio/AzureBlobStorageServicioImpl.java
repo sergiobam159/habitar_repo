@@ -30,7 +30,7 @@ public class AzureBlobStorageServicioImpl implements AzureBlobStorageServicio{
 		String blobId = UUID.randomUUID().toString(); //un identificador unico universal UUID 
 		try {
 		BlobClient blobClient = blobContainerClient.getBlobClient(blobId); 
-        //ya este BlobClient es un cliente que trabaja con un UN Y SOLO UN archivo en el blob storage
+        // este objetito BlobClient es un cliente que trabaja con un UN Y SOLO UN archivo en el blob storage
         //al ponerle el blobId en el getblobclient se crea el cliente y genera el id de este nuevo blob
         //con el UUID generado
         

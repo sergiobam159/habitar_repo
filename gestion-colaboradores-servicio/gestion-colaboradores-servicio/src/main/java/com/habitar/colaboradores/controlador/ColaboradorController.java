@@ -50,6 +50,7 @@ public class ColaboradorController {
 	    @GetMapping("/{id}")
 	    public ResponseEntity<ColaboradorDTO> obtenerColaboradorPorId(@PathVariable String id) {
 	        Optional<ColaboradorDTO> colaborador = colaboradorServicio.obtenerColaboradorPorId(id);
+	        System.out.println("GET EXITOSO A COLABORADORES");
 	        return colaborador.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
 	                          .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	    }

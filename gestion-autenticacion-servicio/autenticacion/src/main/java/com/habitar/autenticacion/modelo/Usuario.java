@@ -15,7 +15,6 @@ import lombok.Data;
 @Table(name = "usuarios_habitar") //aqui se define la tabla (JAKARTA - JPA)
 @Data
 public class Usuario {
-
 	@Id
 	@Column(name = "usu_id", length = 10)
 	private String usuId ;

@@ -90,7 +90,6 @@ public class ProyectoController {
 	public ResponseEntity<Boolean> checkProyectoExiste (@PathVariable String id){
 		 boolean existe = proyectoServicio.checkProyectoExiste(id);
 		    return new ResponseEntity<>(existe, HttpStatus.OK);
-		
 	}
 	
 	@PutMapping("/{id}")
