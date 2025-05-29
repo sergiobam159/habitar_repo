@@ -19,10 +19,11 @@ public class GatewayConfiguracion {
 	                        .uri("lb://AUTENTICACION-SERVICIO")) 
 	                // Ruta para el ms  colaboradores
 	                .route("colaboradores_route", r -> r.path("/api/colaboradores/**")
-	                        .filters(f -> f.rewritePath("/api/colaboradores/(?<segment>.*)", "/colaboradores/${segment}")) // Agrega este filtro
+	                        .filters(f -> f.rewritePath("/api/colaboradores/(?<segment>.*)", "/colaboradores/${segment}")) 
 	                        .uri("lb://COLABORADORES-SERVICIO"))
 	                // Ruta para el ms  proyectos
 	                .route("proyectos_route", r -> r.path("/api/proyectos/**")
+	                		.filters(f-> f.rewritePath("/api/proyectos/(?<segment>.*)", "/proyectos/${segment}"))
 	                        .uri("lb://PROYECTOS-SERVICIO"))
 	                // Ruta para el ms documentos
 	                .route("documentos_route", r -> r.path("/api/documentos/**")
