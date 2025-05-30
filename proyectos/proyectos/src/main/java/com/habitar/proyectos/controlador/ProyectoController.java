@@ -135,7 +135,8 @@ public class ProyectoController {
 	
 	  @ExceptionHandler(ProyectoNoEncontradoExcepcion.class)  
 	  //este @ indica que este metodo se encargara de las excepciones ProyectoNoEncontradoExcepcion
-	  //tageadas en la excepcion HttpStatus.NOT_FOUND -- basicamente le pone el cuerpo que definimos al crear la excepción personalizada
+	  //tageadas en la excepcion HttpStatus.NOT_FOUND
+	  //-- basicamente le pone el cuerpo que defini al crear la excepción personalizada
 	    public ResponseEntity<String> handleProyectoNoEncontrado(ProyectoNoEncontradoExcepcion ex) {
 	        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	    }

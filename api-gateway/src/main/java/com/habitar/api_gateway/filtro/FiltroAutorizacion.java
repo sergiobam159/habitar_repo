@@ -12,11 +12,14 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 
+@Component
 public class FiltroAutorizacion implements GatewayFilter{
+	
 	 @Value("${jwt.secret}")
 	    private String secret;
 
@@ -47,7 +50,7 @@ public class FiltroAutorizacion implements GatewayFilter{
 	        // Rutas que NO requieren autenticación 
 	        //  la ruta de login no es interceptada
 	        
-	        if (request.getURI().getPath().startsWith("/auth/login") ) {
+	        if (request.getURI().getPath().startsWith("api/auth/login") ) {
 	            return chain.filter(exchange);
 	        } //aqui permite que la peticion de ese endpoint siga sin filtrar
 

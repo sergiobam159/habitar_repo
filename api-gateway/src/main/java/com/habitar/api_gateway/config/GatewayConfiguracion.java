@@ -5,7 +5,7 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 
 import org.springframework.context.annotation.Configuration;
-import com.habitar.api_gateway.filtro.*;
+import com.habitar.api_gateway.filtro.FiltroAutorizacion;
 
 
 @Configuration

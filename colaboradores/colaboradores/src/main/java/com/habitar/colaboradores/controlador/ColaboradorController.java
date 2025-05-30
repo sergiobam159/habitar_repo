@@ -41,7 +41,7 @@ public class ColaboradorController {
 	        return new ResponseEntity<>(colaboradorGuardado, HttpStatus.CREATED);
 	    }
 
-	    @GetMapping
+	    @GetMapping	
 	    public ResponseEntity<List<ColaboradorDTO>> listarColaboradores() {
 	        List<ColaboradorDTO> colaboradores = colaboradorServicio.obtenerTodosLosColaboradores();
 	        return new ResponseEntity<>(colaboradores, HttpStatus.OK);
