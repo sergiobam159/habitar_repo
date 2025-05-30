@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-eureka-server:latest 
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 50s
+    networks:
+      - my-habitar-network
+
+  config-server:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-config-server:latest 
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 50s
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+  api-gateway:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-api-gateway:latest 
+    container_name: api-gateway-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+  colaboradores:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-colaboradores:latest 
+    container_name: colaboradores-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+  proyectos:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-proyectos:latest 
+    container_name: proyectos-service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+  documentos:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-documentos:latest 
+    container_name: documentos-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+  autenticacion:
+    
+    image: habitaracr.azurecr.io/proyecto_chapter-autenticacion-service:latest 
+    container_name: autenticacion-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - my-habitar-network
+
+networks:
+  my-habitar-network:
+    driver: bridge

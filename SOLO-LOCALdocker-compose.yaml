@@ -27,7 +27,7 @@ services:
         timeout: 5s
         retries: 5
         start_period: 50s
-      depends_on: # ¡Añade esta sección!
+      depends_on: 
         eureka-server:
           condition: service_healthy
       networks:
