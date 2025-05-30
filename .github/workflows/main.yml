@@ -1,0 +1,67 @@
+name: CI/CD con Docker Compose y ACR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Login de ACR Azure Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.AZURE_CR_LOGIN_SERVER }}
+          username: ${{ secrets.AZURE_CR_USERNAME }}
+          password: ${{ secrets.AZURE_CR_PASSWORD }}
+
+      - name: Configurar Docker Compose
+        run: |
+          echo "configurando docker comose"
+          docker compose version
+
+      - name: Construir Imágenes Docker Compose
+        run: |
+          echo "construccion de imagenes"
+          docker-compose build --no-cache
+
+      - name: Etiquetar y Subir Imágenes a ACR
+        run: |
+          echo "etiquetado y subida de imágenes a ACR"
+          DOCKER_CR_SERVER=${{ secrets.AZURE_CR_LOGIN_SERVER }}
+
+          docker tag proyecto_chapter-config-server $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
+
+          docker tag proyecto_chapter-eureka-server $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
+
+          docker tag proyecto_chapter-autenticacion-service $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
+
+          docker tag proyecto_chapter-proyectos $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
+
+          docker tag proyecto_chapter-api-gateway $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
+
+          docker tag proyecto_chapter-documentos $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
+
+          docker tag proyecto_chapter-colaboradores $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
+          docker push $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
+          echo "finalizado etiquetado y las imagenes estan en ACR - BIEN!"
+      - name: Limpiar contenedores y recursos (en el runner)
+        if: always() # Esto asegura que este paso se ejecute incluso si los anteriores fallan
+        run: |
+          echo "Limpiando contenedores en el runner de github actions"
+          docker-compose down || true # '|| true' evita que el workflow falle si no hay contenedores que detener
+          echo "Limpieza completada."
