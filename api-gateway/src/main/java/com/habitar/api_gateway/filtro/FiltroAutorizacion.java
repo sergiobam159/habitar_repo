@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 public class FiltroAutorizacion implements GatewayFilter{
 	
 	 @Value("${jwt.secret}")
-	    private String secret;
+	    private String secret; 
 
 	    private Key getSigningKey() {
 	        byte[] keyBytes = Decoders.BASE64.decode(secret);
