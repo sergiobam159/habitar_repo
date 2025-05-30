@@ -43,30 +43,32 @@ jobs:
 
       - name: Etiquetar y Subir Imágenes a ACR
         run: |
-          echo "etiquetado y subida de imágenes a ACR"
-          DOCKER_CR_SERVER=${{ secrets.AZURE_CR_LOGIN_SERVER }}
-
-          docker tag proyecto_chapter-config-server $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
-
-          docker tag proyecto_chapter-eureka-server $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
-
-          docker tag proyecto_chapter-autenticacion-service $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
-
-          docker tag proyecto_chapter-proyectos $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
-
-          docker tag proyecto_chapter-api-gateway $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
-
-          docker tag proyecto_chapter-documentos $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
-
-          docker tag proyecto_chapter-colaboradores $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
-          docker push $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
-          echo "finalizado etiquetado y las imagenes estan en ACR - BIEN!"
+            DOCKER_CR_SERVER=${{ secrets.AZURE_CR_LOGIN_SERVER }}
+        
+            # Ajusta estos nombres para que coincidan con 'habitar_repo-NOMBRE_DEL_SERVICIO'
+            # Basado en el log de 'proyectos' y tu estructura de carpetas
+            docker tag habitar_repo-config-server $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-config-server:latest
+        
+            docker tag habitar_repo-eureka-server $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
+        
+            docker tag habitar_repo-autenticacion-service $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
+        
+            docker tag habitar_repo-proyectos $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
+        
+            docker tag habitar_repo-api-gateway $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-api-gateway:latest
+        
+            docker tag habitar_repo-documentos $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-documentos:latest
+        
+            docker tag habitar_repo-colaboradores $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
+            docker push $DOCKER_CR_SERVER/proyecto_chapter-colaboradores:latest
+        
+            echo "finalizado etiquetado y las imagenes estan en ACR - BIEN!"
       - name: Limpiar contenedores y recursos (en el runner)
         if: always() # Esto asegura que este paso se ejecute incluso si los anteriores fallan
         run: |
