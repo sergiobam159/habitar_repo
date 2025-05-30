@@ -19,3 +19,8 @@ ContraseñaMongo1 /ContrasennaPostgres1
 RITM 1171999
 
 WSO2
+--------------------------------
+
+levantar mi docker con el docker compose solo de local (up) el que puillea las imagenes
+docker compose -f docker-compose-up.yml pull
+docker compose -f docker-compose-up.yml up -d
