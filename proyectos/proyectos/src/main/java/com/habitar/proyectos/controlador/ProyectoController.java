@@ -50,6 +50,7 @@ public class ProyectoController {
 		this.proyectoServicio = proyectoServicio;	
 		this.colaboradorServiceClient = colaboradorServiceClient;
 	}
+	
 	@PostMapping // esto indica que este metodo gestiona los HTTP POST de /proyectos 
 	//ResponseEntity hereda de la clas HttpEntity - representa toda la respuesta HTTP incluyendo el cuerpo (proyectoDTO) y estado
     public ResponseEntity<ProyectoDTO> crearProyecto(@Valid @RequestBody ProyectoCreacionDTO proyectoCreacionDTO) { 
