@@ -22,6 +22,12 @@ FROM openjdk:17-jdk-slim
 #inicia la segunda fase, luego de haber construido el jar
 
 WORKDIR /app
+
+#instala curl para ejecutar el healthckeck
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*
+	
 #lo mismo, define el workdir para la segunda fase
 COPY --from=build /app/target/*.jar app.jar
 #copia el jar en la imagen entiempo de ejeución

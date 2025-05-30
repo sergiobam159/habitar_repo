@@ -2,9 +2,8 @@
 version: '3.8'
 
 services:
-
    config-server:
-      build: ./config-server
+      build: ./config-server/config-server
       container_name: config-server
       ports:
         - "8888:8888"
@@ -13,6 +12,7 @@ services:
         interval: 10s
         timeout: 5s
         retries: 5
+        start_period: 50s
       networks:
         - my-habitar-network
    eureka-server:
@@ -20,13 +20,19 @@ services:
     container_name: eureka-server
     ports:
       - "8761:8761"
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+        start_period: 50s
     depends_on:
       config-server:
         condition: service_healthy
     networks:
       - my-habitar-network
    apigateway:
-       build: ./apigateway 
+       build: ./api-gateway 
        container_name: api-gateway-service
        ports:
           - "8084:8084" 
@@ -42,7 +48,7 @@ services:
        networks:
           - my-habitar-network
    colaboradores:
-    build: ./colaboradores
+    build: ./colaboradores/colaboradores
     container_name: colaboradores-service
     ports:
       - "8081:8081"
@@ -57,7 +63,7 @@ services:
     networks:
       - my-habitar-network
    proyectos:
-      build: ./proyectos
+      build: ./proyectos/proyectos
       container_name: proyectos-service
       ports:
         - "8080:8080" 
@@ -72,7 +78,7 @@ services:
       networks:
         - my-habitar-network
    documento:
-    build: ./documentos
+    build: ./documentos/documentos
     container_name: documentos-service
     ports:
       - "8083:8083"
@@ -87,7 +93,7 @@ services:
     networks:
       - my-habitar-network
    autenticacion:
-    build: ./autenticacion
+    build: ./autenticacion/autenticacion
     container_name: autenticacion-service
     ports:
       - "8082:8082"
