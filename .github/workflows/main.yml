@@ -39,7 +39,7 @@ jobs:
       - name: Construir Imágenes Docker Compose
         run: |
           echo "construccion de imagenes"
-          docker-compose build --no-cache
+          docker compose build --no-cache
 
       - name: Etiquetar y Subir Imágenes a ACR
         run: |
