@@ -1,7 +1,5 @@
 # habitar
-╔════════════════════════════════════════════════════════════════════╗
-║                  HABITAR - estudio de arquitectura                ║
-╚════════════════════════════════════════════════════════════════════╝
+
 
 Sistema de gestión de proyectos Estudio de Arquitectura Habitar 
 
