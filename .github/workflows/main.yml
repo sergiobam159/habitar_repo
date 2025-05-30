@@ -16,6 +16,14 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
+      - name: Depuración - CURL a ACR Login Server
+        run: |
+          echo "Intentando CURL a la API v2 del registro: https://${{ secrets.AZURE_CR_LOGIN_SERVER }}/v2/"
+          curl -vvv --fail-with-body "https://${{ secrets.AZURE_CR_LOGIN_SERVER }}/v2/" || true
+        env:
+          # Para que no se muestre el secreto completo en el log, usamos env
+          ACR_LOGIN_SERVER: ${{ secrets.AZURE_CR_LOGIN_SERVER }}
+
       - name: Login de ACR Azure Container Registry
         uses: docker/login-action@v3
         with:
