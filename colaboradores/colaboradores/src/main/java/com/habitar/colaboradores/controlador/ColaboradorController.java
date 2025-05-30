@@ -36,9 +36,13 @@ public class ColaboradorController {
 	  }
 	  
 	  @PostMapping
-	    public ResponseEntity<ColaboradorDTO> crearColaborador(@Valid @RequestBody ColaboradorCreacionDTO colaboradorCreacionDTO) {
-	        ColaboradorDTO colaboradorGuardado = colaboradorServicio.crearColaborador(colaboradorCreacionDTO);
+	    public ResponseEntity<?> crearColaborador(@Valid @RequestBody ColaboradorCreacionDTO colaboradorCreacionDTO) {
+		  try { 
+		  ColaboradorDTO colaboradorGuardado = colaboradorServicio.crearColaborador(colaboradorCreacionDTO);
 	        return new ResponseEntity<>(colaboradorGuardado, HttpStatus.CREATED);
+		  } catch (Exception e) {
+		        return new ResponseEntity<String>("Error al crear colaborador"+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		    }
 	    }
 
 	    @GetMapping	

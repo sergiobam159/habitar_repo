@@ -82,9 +82,11 @@ public class ProyectoController {
 	}
 	
 	@GetMapping("/detalle/{id}")
-	public ResponseEntity<Optional<ProyectoDTO>> obtenerProyectoPorId (@PathVariable String id){
+	public ResponseEntity<ProyectoDTO> obtenerProyectoPorId (@PathVariable String id){
 		Optional<ProyectoDTO> proyectoEncontrado = proyectoServicio.obtenerProyectoPorId(id);
-		return new ResponseEntity<>(proyectoEncontrado, HttpStatus.OK);
+	    return proyectoEncontrado.map(proyectoDTO -> new ResponseEntity<>(proyectoDTO, HttpStatus.OK))
+                .orElseThrow(() -> new ProyectoNoEncontradoExcepcion(id));
+
 	}
 	
 	@GetMapping("/checkExistencia/{id}")

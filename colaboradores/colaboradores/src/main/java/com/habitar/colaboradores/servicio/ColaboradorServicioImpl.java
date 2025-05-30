@@ -1,5 +1,6 @@
 package com.habitar.colaboradores.servicio;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class ColaboradorServicioImpl implements ColaboradorServicio {
 
 	@Override
 	public ColaboradorDTO crearColaborador(ColaboradorCreacionDTO creacionDTO) {
+		
 		Colaborador colaborador = new Colaborador();
 		colaborador.setNombre(creacionDTO.getNombre());
 		colaborador.setApellido1(creacionDTO.getApellido1());
@@ -37,7 +39,10 @@ public class ColaboradorServicioImpl implements ColaboradorServicio {
 		colaborador.setSueldo(creacionDTO.getSueldo());
 
 		Colaborador colaboradorGuardado = colaboradorRepositorio.save(colaborador);
+		
 		return convertirAColaboradorDTO(colaboradorGuardado);
+		
+		
 	}
 
 	@Override

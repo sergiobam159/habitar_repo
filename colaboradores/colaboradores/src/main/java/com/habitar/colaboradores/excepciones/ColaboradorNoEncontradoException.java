@@ -11,6 +11,6 @@ public class ColaboradorNoEncontradoException extends RuntimeException {
 	//en caso de que requiera que cambie esta clase
 	
 	public ColaboradorNoEncontradoException(String id) {
-        super("No se encontró el proyecto con ID: " + id);
+        super("No se encontró el colaborador con ID: " + id);
     }
 }

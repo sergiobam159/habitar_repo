@@ -14,6 +14,6 @@ public class ProyectoDTO {
 	 private String clienteId;
 	 private String colaboradorResponsableId; //id obtenido desde el servicio de controlador
 	 private LocalDateTime fechaDeInicio;
-	 private String mensaje; //mensaje de OK o mensaje de error
+	 private String mensaje; 
 	 
 }

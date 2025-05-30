@@ -32,7 +32,6 @@ public class ProyectoServicioImpl implements ProyectoServicio {
 	
 	@Override
 	public Boolean checkProyectoExiste (String Id) {
-		
 		return Optional.ofNullable(this.obtenerProyectoPorId(Id)).filter(p -> !p.isEmpty()).isPresent();
 	}
 	
@@ -66,6 +65,7 @@ public class ProyectoServicioImpl implements ProyectoServicio {
 		proyectoDTO.setFechaDeInicio(proyectoGuardado.getFechaDeInicio());
 
 		return proyectoDTO;
+		
 	}
 
 	@Override
