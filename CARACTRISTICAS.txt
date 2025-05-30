@@ -1,26 +1,23 @@
-Implementar: 
-api-gateway
-config-server 
-service-registry
-balanceador de carga con - Ribbon
 
-----
 
-transaccionales
-con bd
-etc etc
-
-contraseña postgres 
+contraseña postgres:
 ContrasennaPostgres1
-contraseña mongo
+contraseña mongo:
 ContraseñaMongo1 /ContrasennaPostgres1
 
 
-RITM 1171999
+COMO LEVANTAR: 
 
-WSO2
---------------------------------
+el servidor de configuracion lee las configuraciones del repositorio "habitar-config-server"
 
-levantar mi docker con el docker compose solo de local (up) el que puillea las imagenes
+COMMITEAR - CONFIRMAR EJECUCION CON ACTIONS
+
+GITHUB ACTIONS va a utilizar el docker compose build
+creara las imagenes y las subirá a ACR
+
+de ser necesario configurar el endpoint de conexion, secret y password en el actions secrets de configuracion.
+
+levantar mi contenedores con el docker compose solo de local (up) el que puillea las imagenes
 docker compose -f docker-compose-up.yml pull
 docker compose -f docker-compose-up.yml up -d
+

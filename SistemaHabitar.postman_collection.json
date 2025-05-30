@@ -1,0 +1,510 @@
+{
+	"info": {
+		"_postman_id": "fdd5eda5-eb20-481d-92dd-7d53860b94a8",
+		"name": "SistemaHabitar",
+		"description": "Sistemita para la gestión basica de un estudio de arquitectura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15704909"
+	},
+	"item": [
+		{
+			"name": "Obtener el endpoint de autorización",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/oauth2/authorize?response_type=code&client_id=cliente-apigateway&scope=openid profile read write&redirect_uri=https://www.google.com/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"oauth2",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "client_id",
+							"value": "cliente-apigateway"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile read write"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.google.com/"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIGATEWAYbuscarColaboradorPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/colaboradores/682609ba25bf6f4c82e1d2e3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"colaboradores",
+						"682609ba25bf6f4c82e1d2e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APIGATEWAYlistarColaboradores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzMDg2MCwiZXhwIjoxNzQ4NjM0NDYwfQ.Mh9AJuXsMU5u-dU_uqPcsln3v4xQJXMUHXtE3WHlAFU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/colaboradores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"colaboradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarColaboradorPorId Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/colaboradores/682609ba25bf6f4c82e1d2e3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"colaboradores",
+						"682609ba25bf6f4c82e1d2e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ssilvana\",\r\n    \"password\": \"zargo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearProyecto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"PROYECTO MUESTRA FINAL\",\r\n    \"descripcion\": \"PROYECTO MUESTRA FINAL\",\r\n    \"estado\": \"PENDIENTE\",\r\n    \"clienteId\": \"municipalidad_provincial_huanchaco\",\r\n    \"colaboradorResponsableId\": \"1234567\",\r\n    \"fechaDeInicio\": \"2025-05-15T09:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/proyectos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"proyectos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearColaborador",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Pablo\",\r\n    \"apellido1\": \"Dominguez\",\r\n    \"dni\": \"77791131\",\r\n    \"email\": \"pablitoGomez@habitar.com\",\r\n    \"profesion\": \"Ingeniero\",\r\n    \"fechaContratacion\": \"2023-08-15T10:00:00\",\r\n    \"sueldo\": 5000.50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/colaboradores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"colaboradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarColaboradorPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/api/colaboradores/683a17cff13b4837c6b879b2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"colaboradores",
+						"683a17cff13b4837c6b879b2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Proyectos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/proyectos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"proyectos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Colaboradores",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/colaboradores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"colaboradores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "asignarResponsable",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/proyectos/683a179d7d735c35450bb84a/responsable/683a17cff13b4837c6b879b2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"proyectos",
+						"683a179d7d735c35450bb84a",
+						"responsable",
+						"683a17cff13b4837c6b879b2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Proyecto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/api/proyectos/detalle/683a179d7d735c35450bb84a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"api",
+						"proyectos",
+						"detalle",
+						"683a179d7d735c35450bb84a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubirDocumento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzc2lsdmFuYSIsImlhdCI6MTc0ODYzNzU1MiwiZXhwIjoxNzQ4NjQxMTUyfQ.NRuBMNGftDnDesJazokmWuTOFGueL2hpYzU94kJxQ6M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Descargas/certificado.pdf"
+						},
+						{
+							"key": "idProyecto",
+							"value": "68224d2001038e18e3c42a9d",
+							"type": "text"
+						},
+						{
+							"key": "subidoPor",
+							"value": "682626678249b1603812693f",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Documento PDF de especiciaciones tecnicas del municipio 2025",
+							"type": "text"
+						},
+						{
+							"key": "nombreArchivoOriginal",
+							"value": "especificacion_rampa2.pdf",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8083/documentos/subir",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"documentos",
+						"subir"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
