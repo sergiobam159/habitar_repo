@@ -2,19 +2,6 @@
 version: '3.8'
 
 services:
-   config-server:
-      build: ./config-server/config-server
-      container_name: config-server
-      ports:
-        - "8888:8888"
-      healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
-        start_period: 50s
-      networks:
-        - my-habitar-network
    eureka-server:
     build: ./eurekaserver
     container_name: eureka-server
@@ -26,12 +13,26 @@ services:
         timeout: 5s
         retries: 5
         start_period: 50s
-    depends_on:
-      config-server:
-        condition: service_healthy
+    
     networks:
       - my-habitar-network
-   apigateway:
+   config-server:
+      build: ./config-server/config-server
+      container_name: config-server
+      ports:
+        - "8888:8888"
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+        start_period: 50s
+      depends_on: # ¡Añade esta sección!
+        eureka-server:
+          condition: service_healthy
+      networks:
+        - my-habitar-network
+   api-gateway:
        build: ./api-gateway 
        container_name: api-gateway-service
        ports:
@@ -77,7 +78,7 @@ services:
           condition: service_healthy
       networks:
         - my-habitar-network
-   documento:
+   documentos:
     build: ./documentos/documentos
     container_name: documentos-service
     ports:
