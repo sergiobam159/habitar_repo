@@ -122,7 +122,6 @@ public class ProyectoController {
 	        }
 	        catch (FeignException e) {
 	            ProyectoDTO errorDTO = new ProyectoDTO();
-	            
 	            errorDTO.setMensaje("Error al comunicar con el servicio de colaboradores: " + e.getMessage());
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDTO);
 	        }

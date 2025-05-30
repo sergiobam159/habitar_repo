@@ -29,6 +29,7 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final AutenticacionServicio autenticacionServicio;
+    
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
@@ -44,6 +45,7 @@ public class AuthController {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    
     private String generateToken(String username) {
         return Jwts
                 .builder()

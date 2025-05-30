@@ -22,13 +22,11 @@ public interface DocumentoServicio {
 	    void eliminarDocumento(String idBlobStorage);
 
 	    //  listar todos los documentos de un proyecto específico.
-	   
 	    List<DocumentoDTO> listarDocumentosPorProyecto(String idProyecto);
 
 	    // obtener los metadatos de un solo documento por su id de base de datos.
 	    Optional<DocumentoDTO> obtenerDocumentoPorId(Long id);
 
-	    
 	    void deshabilitarDocumento(Long id);
 
 	    

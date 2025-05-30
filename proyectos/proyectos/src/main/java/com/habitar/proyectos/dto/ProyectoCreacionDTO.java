@@ -24,6 +24,7 @@ public class ProyectoCreacionDTO {
 	    private String clienteId;
 	    @NotBlank(message = "El id del colaborador responsable es obligatorio")
 	    private String colaboradorResponsableId;
+	    
 	    private LocalDateTime fechaDeInicio;
 	
 }
