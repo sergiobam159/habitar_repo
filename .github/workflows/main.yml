@@ -53,7 +53,7 @@ jobs:
             docker tag habitar_repo-eureka-server $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
             docker push $DOCKER_CR_SERVER/proyecto_chapter-eureka-server:latest
         
-            docker tag habitar_repo-autenticacion-service $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
+            docker tag habitar_repo-autenticacion $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
             docker push $DOCKER_CR_SERVER/proyecto_chapter-autenticacion-service:latest
         
             docker tag habitar_repo-proyectos $DOCKER_CR_SERVER/proyecto_chapter-proyectos:latest
