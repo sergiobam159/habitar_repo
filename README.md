@@ -9,7 +9,7 @@
 **Inspirado en la tierra,  
 la arcilla y la vida**
 
-
+  
 Sistema de gestión de proyectos Estudio de Arquitectura Habitar 
 
 Consta de modulos para la gestión de proyectos, profesionales responsables, y documentación del proyecto
