@@ -16,6 +16,7 @@ public class GatewayConfiguracion {
 	        return builder.routes()
 	                // Ruta para el ms autenticacion
 	                .route("autenticacion_route", r -> r.path("/api/auth/**") 
+	                		.filters(f -> f.rewritePath("/api/auth/(?<segment>.*)", "/auth/${segment}")) 
 	                        .uri("lb://AUTENTICACION-SERVICIO")) 
 	                // Ruta para el ms  colaboradores
 	                .route("colaboradores_route", r -> r.path("/api/colaboradores/**")
@@ -27,6 +28,7 @@ public class GatewayConfiguracion {
 	                        .uri("lb://PROYECTOS-SERVICIO"))
 	                // Ruta para el ms documentos
 	                .route("documentos_route", r -> r.path("/api/documentos/**")
+	                		.filters(f -> f.rewritePath("/api/documentos/(?<segment>.*)", "/documentos/${segment}")) 
 	                        .uri("lb://DOCUMENTOS-SERVICIO"))
 	                .build();
 	    }

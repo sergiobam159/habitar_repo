@@ -14,6 +14,7 @@ COPY pom.xml .
 #copia el pom del local al workdir
 COPY src ./src
 #mueve todo lo del src al workdir (el codigo fuente pes)
+
 RUN mvn clean package -DskipTests
 #aqui ejecuta maven clean y genera el jar
 
