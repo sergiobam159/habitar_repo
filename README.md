@@ -1,5 +1,23 @@
 # habitar
-Sistema de gestión de proyectos Estudio Arq Habitar 
+
+╔════════════════════════════════════════════════════════════════════╗  
+║                  HABITAR - estudio de arquitectura                ║  
+╚════════════════════════════════════════════════════════════════════╝  
+
+---
+
+**Inspirado en la tierra,  
+la arcilla y la vida**
+
+
+Sistema de gestión de proyectos Estudio de Arquitectura Habitar 
+
+Consta de modulos para la gestión de proyectos, profesionales responsables, y documentación del proyecto
+Se necesita tener un usuario validado para poder realizar peticiones
+
+Se recomienda utilizar Postman para probar las peticiones
+
+El archivo de peticiones postman está en el repositorio asi que no ande de lloron 
 
 ## Ejecución con Docker
 
